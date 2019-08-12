@@ -1,0 +1,42 @@
+﻿@model IQueryable<EmployeeModel>
+@{
+    ViewData["Title"] = "Employee";
+}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+<h2>Сотрудники</h2>
+<a asp-controller="Managment" asp-action="CreateEmployee">Добавить</a>
+<table id="example" class="display row-border" style="width:100%">
+    <tr>
+        <td>Фамилия</td>
+        <td>Имя</td>
+        <td>Должность</td>
+    </tr>
+    @foreach (var result in Model)
+    {
+        <tr>
+            <td>@result.LastName</td>
+            <td>@result.Name</td>
+            <td>@result.PositionName</td>
+            <td>
+                <a class="btn btn-primary btn-sm" href="@Url.Action("EditEmployee","Managment", new { id=result.Id})"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
+                <a class="btn btn-danger btn-sm"  href="@Url.Action("DeleteEmployee","Managment", new { id=result.Id})"><i class="fa fa-trash fa-lg"></i></a>
+            </td>
+        </tr>
+    }
+</table>
+
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+
+
+</script>

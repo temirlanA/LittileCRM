@@ -1,0 +1,18 @@
+﻿@model IQueryable<PositionModel>
+@{
+    ViewData["Title"] = "PositionList";
+}
+
+<h2>Список должностей</h2>
+<table>
+    <tr>
+        <td>Наименование должности</td>
+        <td></td>
+    </tr>
+    @foreach (var result in Model)
+    {
+        <tr>
+            <td>@result.Name</td>
+        </tr>
+    }
+</table>
